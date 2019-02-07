@@ -1,0 +1,9 @@
+FROM nagarajulrpt/jmeterbase
+		
+MAINTAINER nagarajulrpt@gmail.com
+	
+EXPOSE 1099 60000
+
+ENTRYPOINT $JMETER_HOME/bin/jmeter-server \
+                        -Dserver.rmi.localport=60000 \
+                        -Dserver_port=1099
