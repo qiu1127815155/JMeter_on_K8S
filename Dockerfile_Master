@@ -1,0 +1,7 @@
+FROM nagarajulrpt/jmeterbase
+
+MAINTAINER nagarajulrpt@gmail.com
+
+EXPOSE 60000
+
+WORKDIR $JMETER_HOME/bin
