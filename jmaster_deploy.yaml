@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: jmeter-master
+  name: jmmaster
   labels:
     jmeter_mode: master
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jmmaster
-        image: kubernautslabs/jmeter_master:latest
+        image: nagarajulrpt/openjdk_jmeter5.0_server
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
