@@ -5,7 +5,6 @@ metadata:
   labels:
     jmeter_mode: slave
 spec:
-  clusterIP: None
   ports:
     - port: 1099
       name: first
