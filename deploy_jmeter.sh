@@ -49,8 +49,8 @@ echo "Creating your project environment configuratin files"
 
 sed "s/jmeter-slave/jmeter-slave-${2:-$PNAME}/g" $WORKING_DIR/jslave_deploy.yaml > $WORKING_DIR/${2:-$PNAME}/jslave_deploy_${2:-$PNAME}.yaml
 sed "s/jmeter-slave-svc/jmeter-slave-svc-${2:-$PNAME}/g" $WORKING_DIR/jslave_svc.yaml > $WORKING_DIR/${2:-$PNAME}/jslave_svc_${2:-$PNAME}.yaml
-sed "s/jmeter-master/jmeter-master-${2:-$PNAME}/g" $WORKING_DIR/jmaster_deploy.yaml > $WORKING_DIR/${2:-$PNAME}/jmaster_deploy_${2:-$PNAME}.yaml
-
+sed "s/jmeter-master/jmeter-master-${2:-$PNAME}/g ; s/configname/configname-${2:-$PNAME}/g" $WORKING_DIR/jmaster_deploy.yaml > $WORKING_DIR/${2:-$PNAME}/jmaster_deploy_${2:-$PNAME}.yaml
+sed "s/configname/configname-${2:-$PNAME}/g ; s/jmeter-slave-svc/jmeter-slave-svc-${2:-$PNAME}/g" $WORKING_DIR/jmaster_config.yaml > $WORKING_DIR/${2:-$PNAME}/jmaster_config_${2:-$PNAME}.yaml
  echo
 
  echo "Total JMeter slaves for this test is " ${1:-$SLAVES}
@@ -79,7 +79,7 @@ echo "JMeter Master deploymnet starting......"
 
 echo
 
-#kubectl create -n $NS -f $WORKING_DIR/jmaster_configmap.yaml
+kubectl create -n $NS -f $WORKING_DIR/${2:-$PNAME}/jmaster_config_${2:-$PNAME}.yaml
 
 echo
 
