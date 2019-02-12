@@ -15,12 +15,19 @@ spec:
         jmeter_mode: master
     spec:
       containers:
-      - name: jmmaster
+      - name: jmeter-master
         image: nagarajulrpt/openjdk_jmeter5.0_server
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
         ports:
         - containerPort: 60000
+        volumeMounts:
+          - name: loadtest
+            mountPath: /load_test
+            subPath: "load_test"
+      volumes:
+      - name: loadtest
         configMap:
-         name: jmeter-load-test
+         name: configname    
+
