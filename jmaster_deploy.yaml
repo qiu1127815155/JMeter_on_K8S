@@ -30,4 +30,3 @@ spec:
       - name: loadtest
         configMap:
          name: configname    
-
