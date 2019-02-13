@@ -10,6 +10,7 @@ NS=`awk '{print $NF}' "$working_dir/ns_export"`
 
 jmx="$1"
 PANME="$2"
+
 [ -n "$jmx" ] || read -p 'Enter path to the jmx file ' jmx
 
 if [ ! -f "$jmx" ];
@@ -24,9 +25,9 @@ test_name="$(basename "$jmx")"
 
 master_pod=`kubectl get po -n $NS | grep jmeter-master-$2 | awk '{print $1}'`
 
+
 kubectl cp "$jmx" -n $NS "$master_pod:/$test_name"
 
 ## Echo Starting Jmeter load test
 
-echo "kubectl exec -ti -n $NS $master_pod -- /bin/bash /load_test /"$test_name""
 kubectl exec -ti -n $NS $master_pod -- /bin/bash /load_test /"$test_name"
