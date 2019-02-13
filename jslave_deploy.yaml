@@ -15,7 +15,7 @@ spec:
         jmeter_mode: slave
     spec:
       containers:
-      - name: jmslave
+      - name: jmeter-slave
         image: nagarajulrpt/openjdk_jmeter5.0_client
         imagePullPolicy: IfNotPresent
         ports:
