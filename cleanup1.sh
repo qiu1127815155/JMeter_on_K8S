@@ -13,7 +13,7 @@ kubectl -n $NS delete deployments/jmeter-master-${1:-$PNAME}
 
 sleep 2
 
-kubectl -n $NS delete configmap/project-${1:-$PNAME}
+kubectl -n $NS delete configmap/configname-${1:-$PNAME}
 
 rm -rf $working_dir/${1:-$PNAME}
 echo "Environment has been released from cluster"
