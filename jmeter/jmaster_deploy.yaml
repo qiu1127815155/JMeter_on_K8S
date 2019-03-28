@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: jmeter-master
+  labels:
+    jmeter_mode: master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      jmeter_mode: master
+  template:
+    metadata:
+      labels:
+        jmeter_mode: master
+    spec:
+      containers:
+      - name: jmeter-master
+        image: nagarajulrpt/openjdk_jmeter5.0_server:latest
+        imagePullPolicy: Always
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
+        ports:
+        - containerPort: 60000
+        volumeMounts:
+          - name: loadtest
+            mountPath: /load_test
+            subPath: "load_test"
+          - name: jresults-volume
+            mountPath: /jresults
+      volumes:
+      - name: loadtest
+        configMap:
+         name: configname
+      - name: jresults-volume
+        emptyDir: {}   
+      nodeSelector:  
+        performance-testing: "true"
